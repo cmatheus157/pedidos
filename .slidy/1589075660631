@@ -1,0 +1,2 @@
+lib/app/modules/home/services/pedido_service.dart
+test/app/modules/home/services/pedido_service_test.dart
