@@ -25,96 +25,111 @@ class _CadastroPageState extends State<CadastroPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: SingleChildScrollView(
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: <Widget>[
-            TextField(
-              autofocus: true,
-              decoration: InputDecoration(labelText: 'Razão Social'),
-              style: TextStyle(fontSize: 24),
-              controller: razaoSocialController,
-              keyboardType: TextInputType.text,
-            ),
-            Divider(),
-            TextField(
-              decoration: InputDecoration(labelText: 'Bairro'),
-              style: TextStyle(fontSize: 24),
-              controller: bairroController,
-            ),
-            Divider(),
-            TextField(
-              decoration: InputDecoration(labelText: 'Cidade'),
-              style: TextStyle(fontSize: 24),
-              controller: cidadeController,
-              keyboardType: TextInputType.text,
-            ),
-            Divider(),
-            TextField(
-              decoration: InputDecoration(labelText: 'Estado'),
-              style: TextStyle(fontSize: 24),
-              controller: estadoController,
-            ),
-            Divider(),
-            TextField(
-              decoration: InputDecoration(labelText: 'Endereço'),
-              style: TextStyle(fontSize: 24),
-              controller: enderecoController,
-            ),
-            Divider(),
-            TextField(
-              decoration: InputDecoration(labelText: 'CEP'),
-              style: TextStyle(fontSize: 24),
-              controller: cepController,
-              keyboardType: TextInputType.number,
-            ),
-            Divider(),
-            TextField(
-              decoration: InputDecoration(labelText: 'CNPJ'),
-              style: TextStyle(fontSize: 24),
-              controller: cnpjController,
-              keyboardType: TextInputType.number,
-            ),
-            Divider(),
-            TextField(
-              decoration: InputDecoration(labelText: 'Inscrição Estadual'),
-              style: TextStyle(fontSize: 24),
-              controller: inscricaoEstadualController,
-              keyboardType: TextInputType.number,
-            ),
-            Divider(),
-            TextField(
-              decoration: InputDecoration(labelText: 'E-mail'),
-              style: TextStyle(fontSize: 24),
-              controller: emailController,
-              keyboardType: TextInputType.emailAddress,
-            ),
-            Divider(),
-            RaisedButton(
-              child: Text("Cadastrar Cliente"),
-              onPressed: () {
-                // model ??= ClienteModel();
-                model.razaoSocial = razaoSocialController.text;
-                model.cidade = cidadeController.text;
-                model.estado = estadoController.text;
-                model.cep = cepController.text;
-                model.bairro = bairroController.text;
-                model.endereco = enderecoController.text;
-                model.email = emailController.text;
-                model.cnpj = cnpjController.text;
-                model.inscricaoEstadual = inscricaoEstadualController.text;
-                controle.saveCliente(model);
-                model = ClienteModel();
-              },
-              color: Colors.red,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0)),
-            )
-          ],
+    return SafeArea(
+      child: Container(
+          child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: <Widget>[
+              TextField(
+                autofocus: true,
+                decoration: InputDecoration(labelText: 'Razão Social'),
+                style: TextStyle(fontSize: 24),
+                controller: razaoSocialController,
+                keyboardType: TextInputType.text,
+              ),
+              Divider(),
+              TextField(
+                decoration: InputDecoration(labelText: 'CEP'),
+                style: TextStyle(fontSize: 24),
+                controller: cepController,
+                keyboardType: TextInputType.number,
+              ),
+              Divider(),
+              TextField(
+                decoration: InputDecoration(labelText: 'Bairro'),
+                style: TextStyle(fontSize: 24),
+                controller: bairroController,
+              ),
+              Divider(),
+              Row(
+                children: <Widget>[
+                  Container(
+                    width: MediaQuery.of(context).size.width / 3,
+                    child: TextField(
+                      decoration: InputDecoration(labelText: 'Cidade'),
+                      style: TextStyle(fontSize: 24),
+                      controller: cidadeController,
+                      keyboardType: TextInputType.text,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 40),
+                    child: Container(
+                      width: MediaQuery.of(context).size.width / 3,
+                      child: TextField(
+                        decoration: InputDecoration(labelText: 'Estado'),
+                        style: TextStyle(fontSize: 24),
+                        controller: estadoController,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Divider(),
+              TextField(
+                decoration: InputDecoration(labelText: 'Endereço'),
+                style: TextStyle(fontSize: 24),
+                controller: enderecoController,
+              ),
+
+              Divider(),
+              // TextField(
+              //   decoration: InputDecoration(labelText: 'CNPJ'),
+              //   style: TextStyle(fontSize: 24),
+              //   controller: cnpjController,
+              //   keyboardType: TextInputType.number,
+              // ),
+              // Divider(),
+              // TextField(
+              //   decoration: InputDecoration(labelText: 'Inscrição Estadual'),
+              //   style: TextStyle(fontSize: 24),
+              //   controller: inscricaoEstadualController,
+              //   keyboardType: TextInputType.number,
+              // ),
+              // Divider(),
+              // TextField(
+              //   decoration: InputDecoration(labelText: 'E-mail'),
+              //   style: TextStyle(fontSize: 24),
+              //   controller: emailController,
+              //   keyboardType: TextInputType.emailAddress,
+              // ),
+              Divider(),
+              RaisedButton(
+                child: Text("Cadastrar Cliente"),
+                onPressed: () {
+                  // model ??= ClienteModel();
+                  model.razaoSocial = razaoSocialController.text;
+                  model.cidade = cidadeController.text;
+                  model.estado = estadoController.text;
+                  model.cep = cepController.text;
+                  model.bairro = bairroController.text;
+                  model.endereco = enderecoController.text;
+                  model.email = emailController.text;
+                  model.cnpj = cnpjController.text;
+                  model.inscricaoEstadual = inscricaoEstadualController.text;
+                  controle.saveCliente(model);
+                  model = ClienteModel();
+                },
+                color: Colors.red,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0)),
+              )
+            ],
+          ),
         ),
-      ),
-    ));
+      )),
+    );
   }
 }

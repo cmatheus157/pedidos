@@ -26,6 +26,23 @@ mixin _$HomeController on _HomeControllerBase, Store {
     }, _$pedidoListAtom, name: '${_$pedidoListAtom.name}_set');
   }
 
+  final _$clienteListAtom = Atom(name: '_HomeControllerBase.clienteList');
+
+  @override
+  ObservableStream<List<ClienteModel>> get clienteList {
+    _$clienteListAtom.context.enforceReadPolicy(_$clienteListAtom);
+    _$clienteListAtom.reportObserved();
+    return super.clienteList;
+  }
+
+  @override
+  set clienteList(ObservableStream<List<ClienteModel>> value) {
+    _$clienteListAtom.context.conditionallyRunInAction(() {
+      super.clienteList = value;
+      _$clienteListAtom.reportChanged();
+    }, _$clienteListAtom, name: '${_$clienteListAtom.name}_set');
+  }
+
   final _$_HomeControllerBaseActionController =
       ActionController(name: '_HomeControllerBase');
 
@@ -60,8 +77,39 @@ mixin _$HomeController on _HomeControllerBase, Store {
   }
 
   @override
+  void getListClientes() {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction();
+    try {
+      return super.getListClientes();
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void saveCliente(ClienteModel model) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction();
+    try {
+      return super.saveCliente(model);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void deleteCliente(ClienteModel model) {
+    final _$actionInfo = _$_HomeControllerBaseActionController.startAction();
+    try {
+      return super.deleteCliente(model);
+    } finally {
+      _$_HomeControllerBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
-    final string = 'pedidoList: ${pedidoList.toString()}';
+    final string =
+        'pedidoList: ${pedidoList.toString()},clienteList: ${clienteList.toString()}';
     return '{$string}';
   }
 }
